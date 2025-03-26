@@ -11,7 +11,7 @@ const loaderAnim = lottie.loadAnimation({
     container: document.getElementById('loader'),
     loop: true,
     autoplay: true,
-    path: '../loader.json' // Укажите правильный путь к файлу
+    path: './loader.json' // Укажите правильный путь к файлу
 });
 
 
@@ -152,7 +152,7 @@ const animation = lottie.loadAnimation({
     renderer: 'svg',
     loop: false,
     autoplay: false,
-    path: '../volume.json' // Укажите правильный путь к файлу
+    path: './volume.json' 
 });
 
 // Состояние звука
@@ -391,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         initializeAllPopupSliders()
         hideLoader();
-    }, 1000);
+    }, 2000);
 
 
 });
