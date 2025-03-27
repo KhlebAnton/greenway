@@ -77,6 +77,7 @@ body {
     -webkit-transition: .5s;
     -o-transition: .5s;
     transition: .5s;
+    overflow-y: auto;
 }
 
 .screen_nav {
@@ -583,11 +584,11 @@ a.pointer {
     max-width: 562px;
     width: 100%;
     border-radius: 20px;
-    position: absolute;
+    position: relative;
     
     transition: .5s;
     background: #00000094;
-   
+    max-height: 90%;
     
 
 }
@@ -757,3 +758,64 @@ a.pointer {
     gap: 10px;
 }
 
+@media (max-width:800px) {
+    .screen {
+        padding: 10px;
+    }
+      
+   
+    .popup_block__page {
+        gap: 10px;
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+    }
+    .btn_nav {
+        width: 60px;
+    }
+    .btn_nav::after {
+        display: none;
+       
+    }
+    .test_container {
+        flex-direction: column;
+    }
+    .swiper-container {
+        height: 100%;
+        width: 100%;
+        padding-left:0;
+    }
+    
+    
+}
+@media (orientation: portrait) and (max-width:900px) {
+    .menu-item{
+        display: grid;
+        grid-template-columns:auto auto;
+        gap: 20px;
+        width: 100%;
+        justify-content: center;
+        justify-items: center;
+    }
+    .menu-item__desc {
+        grid-column:  2;
+        text-align: center;
+    }
+}
+@media (orientation: landscape) and (max-width:900px) { 
+    .popup_btn {
+       position: static;
+       margin-top: 20px;
+    }
+   
+    .popup_block__page {
+        flex-direction: row;
+    }
+    .popup_block__content {
+        background-color: #ffffff;
+        border-radius: 20px;
+        padding: 50px;
+        padding-bottom: 50px;
+        overflow: hidden;
+    }
+}
