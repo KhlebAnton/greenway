@@ -1,5 +1,5 @@
+// loader
 const scrLoader = document.querySelector('.screen_loader');
-
 function showLoader() {
     scrLoader.classList.remove('hidden')
 }
@@ -11,88 +11,45 @@ const loaderAnim = lottie.loadAnimation({
     container: document.getElementById('loader'),
     loop: true,
     autoplay: true,
-    path: './loader.json' // Укажите правильный путь к файлу
+    path: './loader.json' 
 });
 
 
+// nav 
 const btnNav = document.querySelector('.btn_nav');
 const navMenu = document.querySelector('.screen_menu')
 
-// открытие меню кнопки "Навигация"
-let showRoom = false;
-let idRoom = 0;
-btnNav.addEventListener('click', () => {
+
+
+let showRoom  = false;
+
+function toggleMenu() {
     if (!showRoom) {
-        getIdRoomVisible();
-        hideSrcRoom();
-        
+        showNavMenu()
         showRoom = true;
-        showNavMenu();
 
     } else {
         showRoom = false;
         hideNavMenu();
-        
-        showSrcRoom(idRoom)
     }
+}
+btnNav.addEventListener('click', () => {
+    toggleMenu();
 
 
 });
-const screenRoom = document.querySelectorAll('.screen_room');
-const roomWrapperImgs = document.querySelectorAll('.menu-item__img-wrapper');
 
 
-function getIdRoomVisible() {
-    screenRoom.forEach(room => {
-        if(!room.classList.contains('hidden')) {
-            idRoom = room.getAttribute('data-room')
-        }
-    })
-}
-roomWrapperImgs.forEach(el => {
-    el.addEventListener('click', () => {
-        openRoom(el);
-        showRoom = false;
-        hideNavMenu();
-
-    })
-})
-
-function openRoom(el) {
-
-    let id = el.closest('.menu-item').getAttribute('data-room');
-    showSrcRoom(id);
-    
-};
-
-function showSrcRoom(id) {
-    screenRoom.forEach(room => {
-        if (id === room.getAttribute('data-room')) {
-            room.classList.remove('hidden');
-            showPopupStart(room.querySelector('.popup_start'))
-        } else {
-
-        };
-
-    })
-
-};
-function hideSrcRoom() {
-    screenRoom.forEach(room => {
-        room.classList.add('hidden');
-
-    });
-
-};
 
 function showNavMenu() {
     btnNav.classList.add('anim');
-
+    navMenu.classList.remove('hidden')
     setTimeout(() => {
         btnNav.classList.add('btn_nav_open');
 
         setTimeout(() => {
             btnNav.classList.remove('anim');
+            
         }, 100);
     }, 200);
 
@@ -100,7 +57,7 @@ function showNavMenu() {
 
 function hideNavMenu() {
     btnNav.classList.add('anim');
-
+    navMenu.classList.add('hidden')
     setTimeout(() => {
         btnNav.classList.remove('btn_nav_open');
 
@@ -142,7 +99,13 @@ slides.forEach((slide) => {
 window.addEventListener('resize', () => {
     swiper.update()
 })
+const menuItems = document.querySelectorAll('.menu-item__img-wrapper');
 
+menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+        toggleMenu();
+    })
+});
 
 
 
@@ -177,30 +140,9 @@ document.getElementById('volume-animation').addEventListener('click', function (
 });
 
 
+////popups
 
-// элементы 
-// const btnVideo = document.querySelector('.btn_video');
-
-// function showBtnVideo() {
-//     btnVideo.classList.remove('hidden');
-// };
-// function hideBtnVideo() {
-//     btnVideo.classList.add('hidden');
-// };
-
-// const itemBtn = document.querySelector('.popup_item__btn_popup');
-
-// itemBtn.addEventListener('click', () => {
-//     showItemPopup();
-// })
-
-// function showItemBtn() {
-//     itemBtn.classList.remove('hidden');
-// };
-// function hideItemBtn() {
-//     itemBtn.classList.add('hidden');
-// };
-
+// products
 const popupItems = document.querySelectorAll('.popup_item');
 
 popupItems.forEach(popup=> {
@@ -208,13 +150,7 @@ popupItems.forEach(popup=> {
     closePopupBtn.addEventListener('click', () => {
         hideItemPopup(popup)
     });
-    
-
 })
-
-
-
-
 
 function showItemPopup(name) {
     popupItems.forEach(popup=> {
@@ -224,33 +160,48 @@ function showItemPopup(name) {
     });
    
 };
+
 function hideItemPopup(popupElement) {
     popupElement.classList.add('hidden');
 };
 
-const popupWin = document.querySelector('.popup_win');
-const btnPopupWin = popupWin.querySelector('.popup_btn');
-const closepopupWin = popupWin.querySelector('.popup__close');
 
-btnPopupWin.addEventListener('click', () => {
-    hideWinPopup()
-});
-closepopupWin.addEventListener('click', () => {
-    hideWinPopup()
-});
+// wins
+const popupWinItems = document.querySelectorAll('.popup_win');
 
-function showWinPopup() {
-    popupWin.classList.remove('hidden');
+popupWinItems.forEach(popup=> {
+    btnPopup = popup.querySelector('.popup_btn');
+    btnPopup.addEventListener('click', () => {
+        hideWinPopup(popup)
+    });
+    btnClose = popup.querySelector('.popup__close');
+    btnClose.addEventListener('click', () => {
+        hideWinPopup(popup)
+    });
+})
+
+
+function showWinPopup(name) {
+    popupWinItems.forEach(popup=> {
+        if(popup.getAttribute('data-name') === name) {
+            popup.classList.remove('hidden');
+        }
+    });
 };
-function hideWinPopup() {
-    popupWin.classList.add('hidden');
+function hideWinPopup(popupElement) {
+    popupElement.classList.add('hidden');
 };
 
 
 // start popup
+const popupStrarItems = document.querySelectorAll('.popup_start');
 
-function showPopupStart(popupElement) {
-    popupElement.classList.remove('hidden');
+function showStartPopup(name) {
+    popupStrarItems.forEach(popup=> {
+        if(popup.getAttribute('data-name') === name) {
+            popup.classList.remove('hidden');
+        }
+    });
 }
 
 function hidePopupStart(popupElement) {
@@ -262,7 +213,7 @@ function hidePopupStart(popupElement) {
 
 // Инициализация всех попап-слайдеров
 function initializeAllPopupSliders() {
-    document.querySelectorAll('.popup_start').forEach(popupStart => {
+    popupStrarItems.forEach(popupStart => {
         const popupSlider = popupStart.querySelector('.popup_slider');
         if (popupSlider) {
             createStartSlider(popupSlider, popupStart);
@@ -360,17 +311,7 @@ function createStartSlider(popupSlider, popupStart) {
     });
 }
 
-// test btn
 
-
-
-
-
-const testBtnPopupWin = document.querySelector('.btn_test_popup_win');
-testBtnPopupWin.addEventListener('click', (e) => {
-    e.stopPropagation()
-    showWinPopup();
-})
 
 
 document.addEventListener('DOMContentLoaded', () => {

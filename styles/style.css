@@ -40,18 +40,7 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: -o-radial-gradient(35.59% -40.57%, 96.18% 121.66%, #E5E8F2 0%, #C3C6CF 100%)
-        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
-        ,
-        -o-radial-gradient(48.54% 55.55%, 39.83% 117.6%, rgba(117, 123, 148, 0.6) 0%, rgba(213, 214, 222, 0) 100%)
-        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
-    ;
-    background: radial-gradient(96.18% 121.66% at 35.59% -40.57%, #E5E8F2 0%, #C3C6CF 100%)
-        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
-        ,
-        radial-gradient(39.83% 117.6% at 48.54% 55.55%, rgba(117, 123, 148, 0.6) 0%, rgba(213, 214, 222, 0) 100%)
-        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
-    ;
+   
 
     -webkit-touch-callout: none;
     /* iOS Safari */
@@ -78,28 +67,22 @@ body {
     -webkit-transition: .5s;
     -o-transition: .5s;
     transition: .5s;
-    overflow-y: auto;
 }
 
 .screen_nav {
     pointer-events: none;
-    z-index: 100;
-}
-.screen_popup_items-container,
-.screen_popup_wins-container {
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.screen_popup_items-container > *,
-.screen_popup_wins-container > * {
-    pointer-events: all;
-}
-a.pointer {
-    pointer-events: all;
+    z-index: 10;
 }
 
+
+.background_container {
+    background: url('../testimg.png') 50% / cover;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 .logo__wrapper {
     width: 209px;
     height: 60px;
@@ -234,16 +217,31 @@ a.pointer {
     justify-content: center;
     height: 100%;
     overflow: hidden;
+    z-index: 9;
+    background: -o-radial-gradient(35.59% -40.57%, 96.18% 121.66%, #E5E8F2 0%, #C3C6CF 100%)
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+    ,
+    -o-radial-gradient(48.54% 55.55%, 39.83% 117.6%, rgba(117, 123, 148, 0.6) 0%, rgba(213, 214, 222, 0) 100%)
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+;
+background: radial-gradient(96.18% 121.66% at 35.59% -40.57%, #E5E8F2 0%, #C3C6CF 100%)
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+    ,
+    radial-gradient(39.83% 117.6% at 48.54% 55.55%, rgba(117, 123, 148, 0.6) 0%, rgba(213, 214, 222, 0) 100%)
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+;
 }
 
 .screen_menu.hidden {
     opacity: 0;
     pointer-events: none;
+   
+}
+.screen_menu.hidden .swiper-container{
     -webkit-transform: translateX(-100%);
     -ms-transform: translateX(-100%);
     transform: translateX(-100%);
 }
-
 .menu-item {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -280,6 +278,7 @@ a.pointer {
     height: 100%;
     width: 100%;
     padding-left: 23%;
+    transition: .5s;
 }
 
 .swiper-wrapper {
@@ -415,22 +414,12 @@ a.pointer {
     -webkit-backdrop-filter: blur(34px);
     backdrop-filter: blur(34px);
     border-radius: 20px;
-    position: absolute;
-
-    -webkit-transition: .5s;
-
-    -o-transition: .5s;
-
-    transition: .5s;
-
+    position: relative;
+    animation: fadIn .5s ease;
 }
 
 .popup_item.hidden {
-    -webkit-transform: translateX(-100vw);
-    -ms-transform: translateX(-100vw);
-    transform: translateX(-100vw);
-    pointer-events: none;
-    opacity: 0;
+    display: none;
 }
 
 .popup_item__top_img {
@@ -573,21 +562,15 @@ a.pointer {
 }
 
 .screen_elements {
-    pointer-events: none;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
-}
-.screen_popup_items-container {
-    
-    padding-top: 10vh;
-    justify-content: center;
-    display: flex;
+    padding: 90px 10px 10px;
     pointer-events: none;
+    overflow-y: auto;
 }
-.popup_item {
-    pointer-events: all;
-}
+
+
 .screen_elements>* {
     pointer-events: all;
 }
@@ -596,13 +579,20 @@ a.pointer {
     max-width: 562px;
     width: 100%;
     border-radius: 20px;
-    position: absolute;
-    
-    transition: .5s;
+    position: relative;
     background: #00000094;
-    max-height: 90%;
-    
+   animation: fadIn .5s ease;
+}
 
+@keyframes fadIn {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 .popup_block__header {
     padding: 21px 30px 12px;
@@ -625,9 +615,7 @@ a.pointer {
     cursor: pointer;
 }
 .popup_block.hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0);
+    display: none;
 }
 
 .popup_block__page__img-wrapper {
@@ -774,7 +762,9 @@ a.pointer {
     .screen {
         padding: 10px;
     }
-      
+    .screen_elements {
+        padding: 80px 10px;
+    }
    
     .popup_block__page {
         gap: 10px;
@@ -783,7 +773,8 @@ a.pointer {
         text-align: center;
     }
     .btn_nav {
-        width: 60px;
+        width: 40px;
+        height: 40px;
     }
     .btn_nav::after {
         display: none;
@@ -797,8 +788,65 @@ a.pointer {
         width: 100%;
         padding-left:0;
     }
-    
-    
+    .popup_item__top {
+        background: #FFFFFF;
+        border-radius: 20px;
+        height: 150px;
+        width: 100%;
+    }
+    .popup_item__title {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .popup_item__title_main {
+        font-size: 15px;
+    }
+    .popup_item__text {
+        font-size: 13px;
+        font-weight: 400;
+        max-height: 150px;
+        overflow: auto;
+    }
+    .popup_block__header {
+        padding: 12px 20px 10px;
+        display: flex
+    ;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .popup_block__content {
+        padding: 10px;
+        padding-bottom: 40px;
+    }
+    .popup_block__page__img-wrapper {
+        width: 120px;
+        height: 120px;
+        flex-shrink: 0;
+    }
+    .popup_block__title {
+        font-size: 18px;
+    }
+    .popup_block__page__info {
+        display: flex
+    ;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .popup_block__text {
+        font-size: 14px;
+    }
+    .logo__wrapper {
+        width: 150px;
+        height: 45px;
+        border-radius: 46px;
+        background-color: #ffffff;
+        padding: 12px 29px;
+    }
+    .logo {
+        width: 92px;
+        height: 20px;
+       
+    }
 }
 @media (orientation: portrait) and (max-width:900px) {
     .menu-item{
@@ -813,22 +861,5 @@ a.pointer {
         grid-column:  2;
         text-align: center;
     }
-}
-@media (orientation: landscape) and (max-width:900px) { 
-    .popup_btn {
-       position: relative;
-       margin-top: 20px;
-       bottom: 0;
-    }
    
-    .popup_block__page {
-        flex-direction: row;
-    }
-    .popup_block__content {
-        background-color: #ffffff;
-        border-radius: 20px;
-        padding: 50px;
-        padding-bottom: 50px;
-        overflow: hidden;
-    }
 }
