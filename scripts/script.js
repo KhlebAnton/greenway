@@ -139,7 +139,9 @@ slides.forEach((slide) => {
     });
 });
 
-
+window.addEventListener('resize', () => {
+    swiper.update()
+})
 
 
 
