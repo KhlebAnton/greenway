@@ -563,7 +563,7 @@ a.pointer {
 }
 
 .screen_elements {
-    /* pointer-events: none; */
+    pointer-events: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -806,8 +806,9 @@ a.pointer {
 }
 @media (orientation: landscape) and (max-width:900px) { 
     .popup_btn {
-       position: static;
+       position: relative;
        margin-top: 20px;
+       bottom: 0;
     }
    
     .popup_block__page {
