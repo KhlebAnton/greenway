@@ -596,7 +596,7 @@ a.pointer {
     max-width: 562px;
     width: 100%;
     border-radius: 20px;
-    position: relative;
+    position: absolute;
     
     transition: .5s;
     background: #00000094;
