@@ -177,27 +177,27 @@ document.getElementById('volume-animation').addEventListener('click', function (
 
 
 // элементы 
-const btnVideo = document.querySelector('.btn_video');
+// const btnVideo = document.querySelector('.btn_video');
 
-function showBtnVideo() {
-    btnVideo.classList.remove('hidden');
-};
-function hideBtnVideo() {
-    btnVideo.classList.add('hidden');
-};
+// function showBtnVideo() {
+//     btnVideo.classList.remove('hidden');
+// };
+// function hideBtnVideo() {
+//     btnVideo.classList.add('hidden');
+// };
 
-const itemBtn = document.querySelector('.popup_item__btn_popup');
+// const itemBtn = document.querySelector('.popup_item__btn_popup');
 
-itemBtn.addEventListener('click', () => {
-    showItemPopup();
-})
+// itemBtn.addEventListener('click', () => {
+//     showItemPopup();
+// })
 
-function showItemBtn() {
-    itemBtn.classList.remove('hidden');
-};
-function hideItemBtn() {
-    itemBtn.classList.add('hidden');
-};
+// function showItemBtn() {
+//     itemBtn.classList.remove('hidden');
+// };
+// function hideItemBtn() {
+//     itemBtn.classList.add('hidden');
+// };
 
 const popupItems = document.querySelectorAll('.popup_item');
 
@@ -360,19 +360,7 @@ function createStartSlider(popupSlider, popupStart) {
 
 // test btn
 
-const testbtn = document.querySelector('.test_btn');
-let testBtnClick = true;
-testbtn.addEventListener('click', () => {
 
-    if (testBtnClick) {
-        showBtnVideo();
-        showItemBtn();
-    } else {
-        hideBtnVideo();
-        hideItemBtn();
-    }
-    testBtnClick = !testBtnClick;
-});
 
 
 

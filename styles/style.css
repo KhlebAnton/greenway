@@ -85,7 +85,17 @@ body {
     pointer-events: none;
     z-index: 100;
 }
-
+.screen_popup_items-container,
+.screen_popup_wins-container {
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.screen_popup_items-container > *,
+.screen_popup_wins-container > * {
+    pointer-events: all;
+}
 a.pointer {
     pointer-events: all;
 }
